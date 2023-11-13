@@ -5,21 +5,20 @@ using UnityEngine;
 public class MiddleScript : MonoBehaviour
 {
     public LogicScript logic;
+    public BirdScript bird;
 
     // Start is called before the first frame update
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        bird = GameObject.FindGameObjectWithTag("Player").GetComponent<BirdScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        logic.addScore();
+        if (bird.playing)
+        {
+            logic.addScore();
+        }
     }
 }
